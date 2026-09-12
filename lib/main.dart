@@ -22,7 +22,7 @@ class ToDoApp extends StatelessWidget {
       },
       routes: {
         "MainPage" :(context) => MainPage(),
-        "AddTaskPage" :(context) => AddTaskPage(),
+        // "AddTaskPage" :(context) => AddTaskPage(),
       },
       home: MainPage(),
       

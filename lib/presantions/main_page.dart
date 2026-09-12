@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:to_do_app_hash/presantions/home_page.dart';
 import 'package:to_do_app_hash/presantions/add_task_page.dart';
+import 'package:to_do_app_hash/widget/title_add_task.dart';
+import 'package:to_do_app_hash/widget/title_home_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -12,33 +14,46 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
-  List<Widget> pages = [
-    HomePage(),
-    AddTaskPage(),
+
+  List task = [];
+
+  // هاذي الفنكشن هي الي تنقل البيانات بين الملفات
+  void addTask(Map<String, dynamic> newTask) {
+    setState(() {
+      task.add(newTask);
+    });
+  }
+
+  List<Widget> get pages => [
+    HomePage(task: task),
+    AddTaskPage(onAddTask: addTask),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        scrolledUnderElevation: 0,
+        backgroundColor: Color(0xFFFAF8F4),
+        toolbarHeight: 90,
+        title: currentIndex == 0
+            ? titleHomePage(taskCount: task.length)
+            : TitleAddTask(),
+      ),
       backgroundColor: const Color(0xFFFAF8F4),
-      body: pages[currentIndex], 
-      
+      body: pages[currentIndex],
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         selectedItemColor: const Color(0xFF1F6F5C),
         backgroundColor: Colors.white,
-        selectedIconTheme: IconThemeData(
-         color: const Color(0xFF1F6F5C)
-        ),
+        selectedIconTheme: IconThemeData(color: const Color(0xFF1F6F5C)),
         // هنا اضفنا هاذه الخصيه عشان نتحكم في التغيير عند الضغط
-        onTap:(value) {
-
+        onTap: (value) {
           // لازم نكون ضايفين set state عشان يعيد يتم التغيير
           setState(() {
             currentIndex = value;
-            
           });
-          
         },
         items: [
           BottomNavigationBarItem(
@@ -53,8 +68,13 @@ class _MainPageState extends State<MainPage> {
           ),
 
           BottomNavigationBarItem(
-            icon: Image.asset('asset/icons/icon-add.png', color: Colors.grey, width: 30, height: 30,),
-            label: "اضافة مهمة"
+            icon: Image.asset(
+              'asset/icons/icon-add.png',
+              color: Colors.grey,
+              width: 30,
+              height: 30,
+            ),
+            label: "اضافة مهمة",
           ),
         ],
       ),
