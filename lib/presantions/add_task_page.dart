@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app_hash/models/note_model.dart';
 import 'package:to_do_app_hash/presantions/home_page.dart';
+import 'package:to_do_app_hash/service/notes_service.dart';
 
 class AddTaskPage extends StatefulWidget {
   final void Function(Map<String, dynamic>) onAddTask;
@@ -10,10 +12,21 @@ class AddTaskPage extends StatefulWidget {
 }
 
 class _AddTaskPageState extends State<AddTaskPage> {
-  bool iscompleted = false;
+  NotesService note = NotesService();
+  List<Notes> notes = [];
+  bool iscompleted = true;
 
   var nameTask = TextEditingController();
-  var desc = TextEditingController();
+  var content = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    getnotes();
+  }
+
+  getnotes() async {
+    notes = await note.getNotes();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +68,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                       SizedBox(height: 30),
 
                       TextFormField(
-                        controller: desc,
+                        controller: content,
                         minLines: 5,
                         maxLines: null,
                         decoration: InputDecoration(
@@ -81,36 +94,10 @@ class _AddTaskPageState extends State<AddTaskPage> {
                       Row(
                         children: [
                           GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 65,
-                                vertical: 20,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(
-                                  width: 1,
-                                  color: iscompleted
-                                      ? Color(0xFF7A7C74)
-                                      : Color(0xFF1F6F5C),
-                                ),
-                              ),
-                              child: Text(
-                                'لم يبدأ',
-                                style: TextStyle(
-                                  color: iscompleted
-                                      ? Color(0xFF7A7C74)
-                                      : Color(0xFF1F6F5C),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 10),
-
-                          GestureDetector(
                             onTap: () {
-                              setState(() {});
+                              setState(() {
+                                iscompleted = true;
+                              });
                             },
                             child: Container(
                               padding: EdgeInsets.symmetric(
@@ -127,11 +114,43 @@ class _AddTaskPageState extends State<AddTaskPage> {
                                 ),
                               ),
                               child: Text(
-                                'مكتملة',
+                                'لم يبدأ',
                                 style: TextStyle(
                                   color: iscompleted
                                       ? Color(0xFF1F6F5C)
                                       : Color(0xFF7A7C74),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                iscompleted = false;
+                              });
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 65,
+                                vertical: 20,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  width: 1,
+                                  color: iscompleted
+                                      ? Color(0xFF7A7C74)
+                                      : Color(0xFF1F6F5C),
+                                ),
+                              ),
+                              child: Text(
+                                'مكتملة',
+                                style: TextStyle(
+                                  color: iscompleted
+                                      ? Color(0xFF7A7C74)
+                                      : Color(0xFF1F6F5C),
                                 ),
                               ),
                             ),
@@ -144,12 +163,11 @@ class _AddTaskPageState extends State<AddTaskPage> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        final newTask = {
-                          "title": nameTask.text,
-                          "status": iscompleted,
-                          "descri": desc.text,
-                        };
-                        widget.onAddTask(newTask);
+                        note.createNote(
+                          title: nameTask.text,
+                          content: content.text,
+                          status: iscompleted,
+                        );
                       });
                     },
                     child: Container(
