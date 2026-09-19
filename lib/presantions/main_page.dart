@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:to_do_app_hash/models/note_model.dart';
 import 'package:to_do_app_hash/presantions/home_page.dart';
 import 'package:to_do_app_hash/presantions/add_task_page.dart';
+import 'package:to_do_app_hash/presantions/profile_screen.dart';
+import 'package:to_do_app_hash/service/notes_service.dart';
 import 'package:to_do_app_hash/widget/title_add_task.dart';
 import 'package:to_do_app_hash/widget/title_home_page.dart';
 
@@ -14,31 +17,47 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
+  NotesService note = NotesService();
 
-  List task = [];
+List<Notes> notes = [];
 
   // هاذي الفنكشن هي الي تنقل البيانات بين الملفات
-  void addTask(Map<String, dynamic> newTask) {
-    setState(() {
-      task.add(newTask);
-    });
-  }
+  // void addTask(Map<String, dynamic> newTask) {
+  //   setState(() {
+  //     notes.add(newTask);
+  //   });
+  // }
 
   List<Widget> get pages => [
-    HomePage(task: task),
-    AddTaskPage(onAddTask: addTask),
+    HomePage(onNotesChanged: getNotes),
+    AddTaskPage(),
+    ProfileScreen()
   ];
+
+Future <void> getNotes() async{
+    final response = await note.getNotes();
+
+    setState(() {
+      notes = response;
+    });
+}
+  @override
+  void initState() {
+    super.initState();
+    getNotes();
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: currentIndex == 2 ? null : AppBar(
         scrolledUnderElevation: 0,
         backgroundColor: Color(0xFFFAF8F4),
         toolbarHeight: 90,
         title: currentIndex == 0
-            ? titleHomePage(taskCount: task.length)
-            : TitleAddTask(),
+            ? titleHomePage(taskCount: notes.length)
+            : TitleAddTask() ,
       ),
       backgroundColor: const Color(0xFFFAF8F4),
       body: pages[currentIndex],
@@ -53,6 +72,9 @@ class _MainPageState extends State<MainPage> {
           // لازم نكون ضايفين set state عشان يعيد يتم التغيير
           setState(() {
             currentIndex = value;
+            if (value == 0) {
+              getNotes();
+            }
           });
         },
         items: [
@@ -70,11 +92,16 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(
             icon: Image.asset(
               'asset/icons/icon-add.png',
-              color: Colors.grey,
+              color: currentIndex == 1 ?  Color(0xFF1F6F5C) : Colors.grey,
               width: 30,
               height: 30,
             ),
             label: "اضافة مهمة",
+          ),
+
+           BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline, size: 30,),
+            label: "الملف الشخصي",
           ),
         ],
       ),

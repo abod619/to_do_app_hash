@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget titleHomePage({int taskCount = 0}) {
+Widget titleHomePage({required int taskCount}) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 8),
     child: Column(

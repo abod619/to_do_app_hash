@@ -3,7 +3,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:to_do_app_hash/presantions/add_task_page.dart';
+import 'package:to_do_app_hash/presantions/edit_task_page.dart';
+import 'package:to_do_app_hash/presantions/login_screen.dart';
 import 'package:to_do_app_hash/presantions/main_page.dart';
+import 'package:to_do_app_hash/presantions/profile_screen.dart';
+import 'package:to_do_app_hash/presantions/signup_screen.dart';
+import 'package:to_do_app_hash/presantions/splash_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,9 +36,12 @@ class ToDoApp extends StatelessWidget {
       },
       routes: {
         "MainPage" :(context) => MainPage(),
+        // "EditTaskPage" :(context) => EditTaskPage()
         // "AddTaskPage" :(context) => AddTaskPage(),
+        "SignupScreen" :(context) => SignupScreen(),
+        'LoginScreen' :(context) => LoginScreen()
       },
-      home: MainPage(),
+      home: SplashScreen(),
       
     );
   }
