@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:to_do_app_hash/theme/app_theme.dart';
 
 class SupportCard extends StatelessWidget {
   const SupportCard({super.key});
@@ -9,14 +10,14 @@ class SupportCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFDFF2E7),
+        color: AppColors.boxShadow,
         borderRadius: BorderRadius.circular(18),
       ),
       child: Row(
         children: [
           const Icon(
             Icons.headset_mic_outlined,
-            color: Color(0xFF1F6F5C),
+            color: AppColors.cardIsTrue,
             size: 35,
           ),
 
@@ -30,14 +31,14 @@ class SupportCard extends StatelessWidget {
                   'تحتاج إلى مساعدة؟',
                   style: GoogleFonts.cairo(
                     fontWeight: FontWeight.bold,
-                    color: const Color(0xFF1F6F5C),
+                    color: AppColors.cardIsTrue,
                   ),
                 ),
                 Text(
                   'تواصل معنا وسنساعدك',
                   style: GoogleFonts.cairo(
                     fontSize: 12,
-                    color: const Color(0xFF7A7C74),
+                    color: AppColors.secondaryText,
                   ),
                 ),
               ],
@@ -47,8 +48,8 @@ class SupportCard extends StatelessWidget {
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF1F6F5C),
-              foregroundColor: Colors.white,
+              backgroundColor: AppColors.cardIsTrue,
+              foregroundColor: AppColors.whiteColor,
               elevation: 0,
             ),
             child: Text(

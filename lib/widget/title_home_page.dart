@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app_hash/theme/app_theme.dart';
 
 Widget titleHomePage({required int taskCount}) {
   return Padding(
@@ -9,7 +10,7 @@ Widget titleHomePage({required int taskCount}) {
         Text(
           'المهام',
           style: TextStyle(
-            color: Colors.black,
+            color: AppColors.colorBlack,
             fontSize: 30,
             fontWeight: FontWeight.bold,
           ),
@@ -18,7 +19,7 @@ Widget titleHomePage({required int taskCount}) {
         Text(
           'لديك $taskCount مهام هذا الاسبوع',
           style: TextStyle(
-            color: Color(0xFF7A7C74),
+            color: AppColors.secondaryText,
             fontSize: 15,
           ),
         ),

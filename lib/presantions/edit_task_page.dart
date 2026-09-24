@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do_app_hash/models/note_model.dart';
 import 'package:to_do_app_hash/service/notes_service.dart';
+import 'package:to_do_app_hash/theme/app_theme.dart';
 
 class EditTaskPage extends StatefulWidget {
 final Notes note ;
@@ -55,15 +56,16 @@ class _EditTaskPageState extends State<EditTaskPage> {
     return GoogleFonts.cairo(
       fontSize: 16,
       fontWeight: FontWeight.bold,
+      color: AppColors.firstText
     );
   }
 
   InputDecoration inputDecoration(String hint, IconData icon) {
     return InputDecoration(
       hintText: hint,
-      hintStyle: GoogleFonts.cairo(color: Colors.grey),
+      hintStyle: GoogleFonts.cairo(color: AppColors.secondaryText),
       filled: true,
-      fillColor: Colors.white,
+      fillColor: AppColors.whiteColor,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(15),
         borderSide: BorderSide.none,
@@ -75,21 +77,22 @@ class _EditTaskPageState extends State<EditTaskPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF9F7F3),
+      backgroundColor: AppColors.background,
 
       appBar: AppBar(
-        backgroundColor: const Color(0xffF9F7F3),
+        backgroundColor: AppColors.background,
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: AppColors.colorBlack ),
         ),
         title: Text(
           'تعديل المهمة',
           style: GoogleFonts.cairo(
             fontSize: 20,
             fontWeight: FontWeight.bold,
+            color: AppColors.firstText
           ),
         ),
       ),
@@ -107,10 +110,11 @@ class _EditTaskPageState extends State<EditTaskPage> {
 
               TextFormField(
                 controller: nameTask,
-                textDirection: TextDirection.rtl,
+               
                 decoration: inputDecoration(
                   'اكتب عنوان المهمة',
                   Icons.title,
+                  
                 ),
               ),
 
@@ -200,7 +204,7 @@ class _EditTaskPageState extends State<EditTaskPage> {
           decoration: BoxDecoration(
             color: selected
                 ? (completed
-                    ? const Color(0xffDFF2E7)
+                    ? AppColors.boxShadow
                     : const Color(0xffE8E8E8))
                 : Colors.white,
 

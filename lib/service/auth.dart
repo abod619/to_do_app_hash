@@ -4,6 +4,7 @@ class Auth {
   final sup = Supabase.instance.client;
 
   Future<void> SignIn(String email, String password) async {
+    
     final respons = await sup.auth.signInWithPassword(
       password: password.trim(),
       email: email.trim(),

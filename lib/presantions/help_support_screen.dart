@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:to_do_app_hash/theme/app_theme.dart';
 import 'package:to_do_app_hash/widget/widget_help.dart/help_faq.dart';
 import 'package:to_do_app_hash/widget/widget_help.dart/support_card.dart';
 
@@ -9,14 +10,15 @@ class HelpSupportScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFAF8F4),
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFAF8F4),
+        backgroundColor: AppColors.background,
         scrolledUnderElevation: 0,
         title: Text(
           'المساعدة والدعم',
           style: GoogleFonts.cairo(
             fontWeight: FontWeight.bold,
+            color: AppColors.firstText
           ),
         ),
         centerTitle: true,
@@ -29,20 +31,20 @@ class HelpSupportScreen extends StatelessWidget {
             Text(
               'نحن هنا لمساعدتك دائمًا',
               style: GoogleFonts.cairo(
-                color: const Color(0xFF7A7C74),
+                color: AppColors.secondaryText,
               ),
             ),
 
             const SizedBox(height: 20),
 
-            const Center(
+            Center(
               child: CircleAvatar(
                 radius: 55,
-                backgroundColor: Color(0xFFDFF2E7),
-                child: Icon(
+                backgroundColor: AppColors.cardIsCompleted,
+                child: const Icon(
                   Icons.support_agent_outlined,
                   size: 60,
-                  color: Color(0xFF1F6F5C),
+                  color: AppColors.cardIsTrue,
                 ),
               ),
             ),
@@ -54,6 +56,7 @@ class HelpSupportScreen extends StatelessWidget {
               style: GoogleFonts.cairo(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
+                color: AppColors.firstText
               ),
             ),
 

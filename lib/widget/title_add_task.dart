@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app_hash/theme/app_theme.dart';
 
 Widget TitleAddTask(){
   return Padding(
@@ -11,7 +12,7 @@ Widget TitleAddTask(){
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.bold,
-            color: Colors.black
+            color: AppColors.firstText
           ),
         ),
     
@@ -20,7 +21,7 @@ Widget TitleAddTask(){
         Text(
           'أدخل تفاصيل المهمة الجديدة',
           style: TextStyle(
-            color: Color(0xFF7A7C74),
+            color: AppColors.secondaryText,
             fontSize: 15
           ),
         )

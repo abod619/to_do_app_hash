@@ -5,6 +5,7 @@ import 'package:to_do_app_hash/presantions/home_page.dart';
 import 'package:to_do_app_hash/presantions/add_task_page.dart';
 import 'package:to_do_app_hash/presantions/profile_screen.dart';
 import 'package:to_do_app_hash/service/notes_service.dart';
+import 'package:to_do_app_hash/theme/app_theme.dart';
 import 'package:to_do_app_hash/widget/title_add_task.dart';
 import 'package:to_do_app_hash/widget/title_home_page.dart';
 
@@ -20,14 +21,6 @@ class _MainPageState extends State<MainPage> {
   NotesService note = NotesService();
 
 List<Notes> notes = [];
-
-  // هاذي الفنكشن هي الي تنقل البيانات بين الملفات
-  // void addTask(Map<String, dynamic> newTask) {
-  //   setState(() {
-  //     notes.add(newTask);
-  //   });
-  // }
-
   List<Widget> get pages => [
     HomePage(onNotesChanged: getNotes),
     AddTaskPage(),
@@ -53,20 +46,20 @@ Future <void> getNotes() async{
     return Scaffold(
       appBar: currentIndex == 2 ? null : AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: Color(0xFFFAF8F4),
+        backgroundColor: AppColors.background,
         toolbarHeight: 90,
         title: currentIndex == 0
             ? titleHomePage(taskCount: notes.length)
             : TitleAddTask() ,
       ),
-      backgroundColor: const Color(0xFFFAF8F4),
+      backgroundColor: AppColors.background,
       body: pages[currentIndex],
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        selectedItemColor: const Color(0xFF1F6F5C),
-        backgroundColor: Colors.white,
-        selectedIconTheme: IconThemeData(color: const Color(0xFF1F6F5C)),
+        selectedItemColor: AppColors.primary,
+        backgroundColor: AppColors.whiteColor,
+        selectedIconTheme: IconThemeData(color: AppColors.primary),
         // هنا اضفنا هاذه الخصيه عشان نتحكم في التغيير عند الضغط
         onTap: (value) {
           // لازم نكون ضايفين set state عشان يعيد يتم التغيير
@@ -81,7 +74,7 @@ Future <void> getNotes() async{
           BottomNavigationBarItem(
             icon: Image.asset(
               'asset/icons/icon-tasks.png',
-              color: currentIndex == 0 ? const Color(0xFF1F6F5C) : Colors.grey,
+              color: currentIndex == 0 ? AppColors.primary : AppColors.grayColor,
               width: 30,
               height: 30,
             ),
@@ -92,7 +85,7 @@ Future <void> getNotes() async{
           BottomNavigationBarItem(
             icon: Image.asset(
               'asset/icons/icon-add.png',
-              color: currentIndex == 1 ?  Color(0xFF1F6F5C) : Colors.grey,
+              color: currentIndex == 1 ?  AppColors.primary : AppColors.grayColor,
               width: 30,
               height: 30,
             ),

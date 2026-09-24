@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:to_do_app_hash/theme/app_theme.dart';
 
 class FilterButton extends StatelessWidget {
   final String title;
@@ -23,8 +24,8 @@ class FilterButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 9),
           decoration: BoxDecoration(
             color: selected
-                ? const Color(0xFF1F6F5C)
-                : const Color(0xFFF0EFEB),
+                ? AppColors.cardIsTrue
+                : AppColors.cardIsNotTrue,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(
@@ -34,8 +35,8 @@ class FilterButton extends StatelessWidget {
               fontSize: 12,
               fontWeight: FontWeight.bold,
               color: selected
-                  ? Colors.white
-                  : const Color(0xFF555750),
+                  ? AppColors.whiteColor
+                  : AppColors.filterColor,
             ),
           ),
         ),

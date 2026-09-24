@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:motion_toast/motion_toast.dart';
 import 'package:to_do_app_hash/presantions/home_page.dart';
 import 'package:to_do_app_hash/presantions/main_page.dart';
 import 'package:to_do_app_hash/service/auth.dart';
+import 'package:to_do_app_hash/theme/app_theme.dart';
 import 'package:to_do_app_hash/widget/socal.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -43,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF9F7F3),
+      backgroundColor: AppColors.background,
 
       body: SafeArea(
         child: SingleChildScrollView(
@@ -62,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     // color: const Color(0xffDFF2E7),
                     borderRadius: BorderRadius.circular(25),
                     boxShadow: [
-                      BoxShadow(color: Color(0xffDFF2E7), blurRadius: 3),
+                      BoxShadow(color: AppColors.boxShadow, blurRadius: 3),
                     ],
                   ),
             
@@ -77,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xff202124),
+                    color: AppColors.firstText,
                   ),
                 ),
             
@@ -85,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
             
                 const Text(
                   'سجل دخولك لمتابعة مهامك',
-                  style: TextStyle(fontSize: 14, color: Color(0xff7A7C74)),
+                  style: TextStyle(fontSize: 14, color: AppColors.secondaryText),
                 ),
             
                 const SizedBox(height: 40),
@@ -95,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   alignment: Alignment.centerRight,
                   child: Text(
                     'البريد الإلكتروني',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: AppColors.firstText),
                   ),
                 ),
             
@@ -114,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     // return null;
                   },
                   controller: email,
-                  textDirection: TextDirection.rtl,
+
                   keyboardType: TextInputType.emailAddress,
             
                   decoration: InputDecoration(
@@ -147,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   alignment: Alignment.centerRight,
                   child: Text(
                     'كلمة المرور',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: AppColors.firstText),
                   ),
                 ),
             
@@ -172,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
             
                     prefixIcon: const Icon(
                       Icons.lock_outline,
-                      color: Color(0xff5F6065),
+                      color: AppColors.iconsColor,
                     ),
             
                     suffixIcon: IconButton(
@@ -186,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         isPasswordHidden
                             ? Icons.visibility_outlined
                             : Icons.visibility_off_outlined,
-                        color: const Color(0xff7A7C74),
+                        color: AppColors.iconsColor,
                       ),
                     ),
             
@@ -229,10 +231,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       login();
+                      MotionToast.success(
+                        title: Text("تم تسجيل الدخول بنجاح"),
+                        description: Text(''),
+                        );
                     },
             
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: green,
+                      backgroundColor: AppColors.primary,
                       elevation: 0,
             
                       shape: RoundedRectangleBorder(
@@ -244,7 +250,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       'تسجيل الدخول',
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white,
+                        color: AppColors.whiteColor,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -256,17 +262,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 // أو
                 Row(
                   children: [
-                    Expanded(child: Divider(color: Colors.grey.shade300)),
+                    Expanded(child: Divider(color: AppColors.dividerColor)),
             
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 12),
                       child: Text(
                         'أو',
-                        style: TextStyle(color: Color(0xff7A7C74)),
+                        style: TextStyle(color: AppColors.secondaryText),
                       ),
                     ),
             
-                    Expanded(child: Divider(color: Colors.grey.shade300)),
+                    Expanded(child: Divider(color: AppColors.dividerColor)),
                   ],
                 ),
             
@@ -283,7 +289,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     const Text(
                       'ليس لديك حساب؟ ',
-                      style: TextStyle(color: Color(0xff7A7C74)),
+                      style: TextStyle(color: AppColors.secondaryText),
                     ),
             
                     GestureDetector(
@@ -294,7 +300,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Text(
                         'إنشاء حساب',
                         style: TextStyle(
-                          color: green,
+                          color: AppColors.primary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

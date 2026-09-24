@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:to_do_app_hash/models/note_model.dart';
+import 'package:to_do_app_hash/theme/app_theme.dart';
 
 class TaskItem extends StatelessWidget {
   final Notes task;
@@ -35,8 +36,8 @@ class TaskItem extends StatelessWidget {
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
           color: completed
-              ? const Color(0xFFDFF2E7).withValues(alpha: 0.65)
-              : Colors.white,
+              ? AppColors.cardIsCompleted
+              : AppColors.whiteColor,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -51,7 +52,7 @@ class TaskItem extends StatelessWidget {
                     style: GoogleFonts.cairo(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: const Color(0xFF20241F),
+                      color: AppColors.firstText,
                     ),
                   ),
                 ),
@@ -63,8 +64,8 @@ class TaskItem extends StatelessWidget {
                         ? Icons.check_circle
                         : Icons.circle_outlined,
                     color: completed
-                        ? const Color(0xFF1F6F5C)
-                        : const Color(0xFFB7B4A8),
+                        ? AppColors.cardIsTrue
+                        : AppColors.secondaryText,
                     size: 27,
                   ),
                 ),
@@ -79,7 +80,7 @@ class TaskItem extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.cairo(
                 fontSize: 13,
-                color: const Color(0xFF7A7C74),
+                color: AppColors.secondaryText,
               ),
             ),
 
@@ -94,8 +95,8 @@ class TaskItem extends StatelessWidget {
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
                     color: completed
-                        ? const Color(0xFF1F6F5C)
-                        : const Color(0xFF8A8C82),
+                        ? AppColors.cardIsTrue
+                        : AppColors.secondaryText,
                   ),
                 ),
 
@@ -104,14 +105,14 @@ class TaskItem extends StatelessWidget {
                     const Icon(
                       Icons.calendar_today_outlined,
                       size: 14,
-                      color: Color(0xFF8A8C82),
+                      color: AppColors.iconsColor,
                     ),
                     const SizedBox(width: 5),
                     Text(
                       formatDate(task.createdAt),
                       style: GoogleFonts.cairo(
                         fontSize: 11,
-                        color: const Color(0xFF8A8C82),
+                        color: AppColors.secondaryText,
                       ),
                     ),
                   ],
@@ -121,6 +122,7 @@ class TaskItem extends StatelessWidget {
                   onTap: onDelete,
                   child: const Icon(
                     Icons.delete_outline,
+                    color: AppColors.iconsColor,
                     size: 20,
                   ),
                 ),

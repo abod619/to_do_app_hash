@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app_hash/models/note_model.dart';
 import 'package:to_do_app_hash/presantions/edit_task_page.dart';
 import 'package:to_do_app_hash/service/notes_service.dart';
+import 'package:to_do_app_hash/theme/app_theme.dart';
 import 'package:to_do_app_hash/widget/filter_button.dart';
 import 'package:to_do_app_hash/widget/task_item.dart';
 import 'package:to_do_app_hash/widget/task_shimmer.dart';
@@ -62,7 +63,7 @@ class _HomePageState extends State<HomePage> {
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
       child: RefreshIndicator(
-        color: const Color(0xFF1F6F5C),
+        color: AppColors.primary,
         onRefresh: getNotes,
         child: ListView(
           children: [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:to_do_app_hash/theme/app_theme.dart';
 
 class TaskShimmer extends StatelessWidget {
   const TaskShimmer({super.key});
@@ -7,14 +8,14 @@ class TaskShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: const Color(0xFFE5E3DE), 
-      highlightColor: const Color(0xFFF7F6F2),
+      baseColor: AppColors.shimmerColor, 
+      highlightColor: AppColors.shimmerHighlight,
       child: Container(
         margin: EdgeInsets.only(top: 15),
         padding: EdgeInsets.all(15),
         height: 130,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.whiteColor,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -23,13 +24,13 @@ class TaskShimmer extends StatelessWidget {
             Container(
               height: 18,
               width: 180,
-              color: Colors.white,
+              color: AppColors.whiteColor,
             ),
              const SizedBox(height: 12),
               Container(
               width: double.infinity,
               height: 12,
-              color: Colors.white,
+              color: AppColors.whiteColor,
             ),
 
             const SizedBox(height: 8),
@@ -37,7 +38,7 @@ class TaskShimmer extends StatelessWidget {
             Container(
               width: 130,
               height: 12,
-              color: Colors.white,
+              color: AppColors.whiteColor,
             ),
           ],
         ),

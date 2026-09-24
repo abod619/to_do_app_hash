@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:motion_toast/motion_toast.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:to_do_app_hash/presantions/help_support_screen.dart';
 import 'package:to_do_app_hash/presantions/login_screen.dart';
+import 'package:to_do_app_hash/theme/app_theme.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -12,7 +14,7 @@ class ProfileScreen extends StatelessWidget {
     final user = Supabase.instance.client.auth.currentUser;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFAF8F4),
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(18),
@@ -23,11 +25,12 @@ class ProfileScreen extends StatelessWidget {
                 style: GoogleFonts.cairo(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
+                  color: AppColors.firstText
                 ),
               ),
               Text(
                 'إدارة حسابك وتفضيلاتك',
-                style: GoogleFonts.cairo(color: Colors.grey),
+                style: GoogleFonts.cairo(color: AppColors.secondaryText),
               ),
 
               const SizedBox(height: 25),
@@ -36,11 +39,11 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   const CircleAvatar(
                     radius: 60,
-                    backgroundColor: Color(0xFFDFF2E7),
+                    backgroundColor: AppColors.boxShadow,
                     child: Icon(
                       Icons.person,
                       size: 70,
-                      color: Color(0xFF1F6F5C),
+                      color: AppColors.primary,
                     ),
                   ),
                 ],
@@ -53,19 +56,20 @@ class ProfileScreen extends StatelessWidget {
                 style: GoogleFonts.cairo(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
+                  color: AppColors.colorBlack
                 ),
               ),
 
               Text(
                 user?.email ?? '',
-                style: GoogleFonts.cairo(color: const Color(0xFF7A7C74)),
+                style: GoogleFonts.cairo(color: AppColors.secondaryText),
               ),
 
               const SizedBox(height: 25),
 
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(
@@ -105,17 +109,17 @@ class ProfileScreen extends StatelessWidget {
 
   Widget _option(IconData icon, String title, {VoidCallback? onTap}) {
     return ListTile(
-      leading: Icon(icon, color: const Color(0xFF1F6F5C)),
+      leading: Icon(icon, color: AppColors.cardIsTrue),
       title: Text(title, style: GoogleFonts.cairo(fontSize: 14)),
       trailing: onTap == null
           ? Text(
               'قريبًا',
               style: GoogleFonts.cairo(
                 fontSize: 11,
-                color: const Color(0xFF8A8C82),
+                color: AppColors.secondaryText,
               ),
             )
-          : Icon(Icons.chevron_right, color: Color(0xFF8A8C82)),
+          : Icon(Icons.chevron_right, color: AppColors.secondaryText),
       onTap: onTap,
     );
   }
@@ -124,11 +128,11 @@ class ProfileScreen extends StatelessWidget {
     return ListTile(
       tileColor: const Color(0xFFFCE9E5),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      leading: const Icon(Icons.logout, color: Color(0xFFC0392B)),
+      leading: const Icon(Icons.logout, color: AppColors.deleteNotification),
       title: Text(
         'تسجيل الخروج',
         style: GoogleFonts.cairo(
-          color: const Color(0xFFC0392B),
+          color: AppColors.deleteNotification,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -142,6 +146,12 @@ class ProfileScreen extends StatelessWidget {
           MaterialPageRoute(builder: (_) => LoginScreen()),
           (_) => false,
         );
+        MotionToast.success(
+          barrierColor: AppColors.deleteNotification,
+          enableAnimation: true,
+          title: Text('تم تسجيل خروج بنجاح'),
+          description: Text(''),
+          ).show(context);
       },
     );
   }

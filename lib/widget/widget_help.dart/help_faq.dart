@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:to_do_app_hash/theme/app_theme.dart';
 
 class HelpFaq extends StatelessWidget {
   const HelpFaq({super.key});
@@ -45,7 +46,7 @@ class HelpFaq extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.whiteColor,
         borderRadius: BorderRadius.circular(16),
       ),
       child: ExpansionTile(
@@ -54,6 +55,7 @@ class HelpFaq extends StatelessWidget {
           style: GoogleFonts.cairo(
             fontSize: 14,
             fontWeight: FontWeight.bold,
+            color: AppColors.firstText
           ),
         ),
         children: [
@@ -63,7 +65,7 @@ class HelpFaq extends StatelessWidget {
               answer,
               style: GoogleFonts.cairo(
                 fontSize: 12,
-                color: const Color(0xFF7A7C74),
+                color: AppColors.secondaryText,
               ),
             ),
           ),

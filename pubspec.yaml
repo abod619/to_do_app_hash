@@ -40,6 +40,9 @@ dependencies:
   flutter_dotenv: ^6.0.1
   flutter_animate: ^4.5.2
   shimmer: 3.0.0
+  motion_toast: ^2.16.0
+  timelines_plus: ^2.0.1
+  intl: ^0.20.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
